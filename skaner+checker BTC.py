@@ -55,8 +55,7 @@ def generate_btc_address_high_entropy():
 
 # Генерация приватного ключа и адресов BTC с низкой энтропией
 def generate_btc_address_low_entropy():
-    # Генерация безопасного низкоэнтропийного ключа (допустимый диапазон)
-    private_key = os.urandom(16) # Замените значение для изменения уровня энтропии (По умолчанию 16)
+    private_key = os.urandom(16)  # Замените значение для изменения уровня энтропии
     private_key_int = int.from_bytes(private_key, 'big') % (ecdsa.SECP256k1.order - 1) + 1
     sk = ecdsa.SigningKey.from_secret_exponent(private_key_int, curve=ecdsa.SECP256k1)
     vk = sk.get_verifying_key()
@@ -109,7 +108,7 @@ async def check_addresses(worker_id, start_state, progress_dict, rich_addresses,
         progress_dict[worker_id] = (generated, found)
 
         # Периодическое сохранение прогресса в файл
-        if generated % 100 == 0:
+        if generated % 100000 == 0:
             await save_state(state)
         state += 1
 
@@ -143,6 +142,7 @@ def start_worker(worker_id, start_state, progress_dict, rich_addresses, method):
 # Основная функция для многопроцессорного запуска
 async def main(num_workers, method):
     start_state = await read_state()
+    
     # Загрузка rich адресов в память
     with open(RICH_FILE, 'r') as rich_file:
         rich_addresses = set(line.strip() for line in rich_file)  # Хранение адресов в памяти
@@ -165,8 +165,7 @@ async def main(num_workers, method):
             p.join()  # Ожидаем завершения всех процессов
         progress_printer.join()  # Ожидаем завершения процесса вывода статистики
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     # Выводим ASCII-арт только в основном процессе
     ascii_art = pyfiglet.figlet_format("BTC keys generator and checker", font="standard")
     colored_art = colored(ascii_art, 'cyan') 
@@ -179,12 +178,17 @@ if __name__ == '__main__':
         "2. Низкая энтропия: Генерация приватного ключа с использованием случайных байтов (16 байт).\n"
     )
     print(colored(description_text, 'cyan'))
+
     # Выбор метода генерации через ввод цифры
     choice = input(colored("Введите номер метода (1 или 2): ", 'cyan')).strip()
     method = 'high' if choice == '1' else 'low' if choice == '2' else 'high'
 
-    # Указываем количество рабочих процессов (по умолчанию 6)
-    num_workers = os.cpu_count() or 6
+    # Указываем максимальную загрузку ЦП (например, 0.75 для 75%)
+    max_cpu_load = input(colored("Введите максимальную загрузку ЦП (например, 0.75 для 75%): ", 'cyan')).strip()
+    max_cpu_load = float(max_cpu_load) if max_cpu_load else 0.75  # Устанавливаем значение по умолчанию 75%
+
+    # Вычисляем количество рабочих процессов в зависимости от максимальной загрузки ЦП
+    num_workers = max(1, int(os.cpu_count() * max_cpu_load))
 
     # Запускаем главную асинхронную функцию
     asyncio.run(main(num_workers, method))
