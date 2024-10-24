@@ -1,3 +1,4 @@
+![btc checker](https://github.com/user-attachments/assets/03bc3630-9c96-4567-94b4-6abf9518fd13)
 Описание программы
 Эта программа предназначена для максимально быстрой генерации Bitcoin-адресов и проверки их на наличие в списке. Программа поддерживает многопоточную обработку и два метода генерации адресов: с высокой энтропией и с низкой энтропией. 
 
@@ -39,6 +40,7 @@ Python 3.8+
 Файл FoundBTC.txt будет содержать адреса, найденные в списке, и соответствующие им приватные ключи в WIF-формате.
 
 --------------------------------------------------------------------------------------------------------------------------
+![btc checker](https://github.com/user-attachments/assets/03bc3630-9c96-4567-94b4-6abf9518fd13)
 This program is designed to fasters generate Bitcoin addresses and check them against a list. The program supports multi-threaded processing and offers two address generation methods: high entropy and low entropy.
 
 Requirements:
