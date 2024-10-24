@@ -1,5 +1,5 @@
 Описание программы
-Эта программа предназначена для генерации Bitcoin-адресов и проверки их на наличие в списке. Программа поддерживает многопоточную обработку и два метода генерации адресов: с высокой энтропией и с низкой энтропией.
+Эта программа предназначена для максимально быстрой генерации Bitcoin-адресов и проверки их на наличие в списке. Программа поддерживает многопоточную обработку и два метода генерации адресов: с высокой энтропией и с низкой энтропией. 
 
 Требования:
 Для работы программы необходимы следующие зависимости:
@@ -39,7 +39,7 @@ Python 3.8+
 Файл FoundBTC.txt будет содержать адреса, найденные в списке богатых, и соответствующие им приватные ключи в WIF-формате.
 
 --------------------------------------------------------------------------------------------------------------------------
-This program is designed to generate Bitcoin addresses and check them against a list. The program supports multi-threaded processing and offers two address generation methods: high entropy and low entropy.
+This program is designed to fasters generate Bitcoin addresses and check them against a list. The program supports multi-threaded processing and offers two address generation methods: high entropy and low entropy.
 
 Requirements:
 The following dependencies are required for the program to run:
