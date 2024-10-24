@@ -38,6 +38,7 @@ Python 3.8+
 Выводится статистика о количестве сгенерированных адресов и скорости генерации в реальном времени.
 Файл FoundBTC.txt будет содержать адреса, найденные в списке, и соответствующие им приватные ключи в WIF-формате.
 
+    Для поддержки автора: TFbR9gXb5r6pcALasjX1FKBArbKc4xBjY8
 --------------------------------------------------------------------------------------------------------------------------
 ![btc checker](https://github.com/user-attachments/assets/03bc3630-9c96-4567-94b4-6abf9518fd13)
 This program is designed to fasters generate Bitcoin addresses and check them against a list. The program supports multi-threaded processing and offers two address generation methods: high entropy and low entropy.
@@ -78,3 +79,6 @@ Notes:
 The program saves the state (number of generated addresses) every 100,000 addresses. If interrupted, it will resume from where it left off.
 Real-time statistics are shown, including the total number of generated addresses and generation speed.
 The FoundBTC.txt file will contain addresses found in the list and their corresponding private keys in WIF format.
+
+    To support the author: TFbR9gXb5r6pcALasjX1FKBArbKc4xBjY8
+
